@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+
+    <h2 class="text-2xl font-bold mb-6 text-center">Add Job Application</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label class="block mb-1">Company</label>
+        <input type="text" name="company" class="w-full border p-2 rounded" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="block mb-1">Position</label>
+        <input type="text" name="position" class="w-full border p-2 rounded" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="block mb-1">Status</label>
+        <select name="status" class="w-full border p-2 rounded">
+          <option>Applied</option>
+          <option>Interview</option>
+          <option>Rejected</option>
+          <option>Offer</option>
+        </select>
+      </div>
+
+      <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Save Job
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="min-h-screen bg-gray-100 p-6">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow">
+        <h2 class="text-xl font-bold mb-4">Edit Job</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="company"
+                   value="{{ job.company }}"
+                   class="w-full p-2 border rounded mb-3"
+                   placeholder="Company">
+
+            <input type="text" name="position"
+                   value="{{ job.position }}"
+                   class="w-full p-2 border rounded mb-3"
+                   placeholder="Position">
+
+            <select name="status"
+                    class="w-full p-2 border rounded mb-3">
+                <option {% if job.status == "Applied" %}selected{% endif %}>Applied</option>
+                <option {% if job.status == "Interview" %}selected{% endif %}>Interview</option>
+                <option {% if job.status == "Offer" %}selected{% endif %}>Offer</option>
+                <option {% if job.status == "Rejected" %}selected{% endif %}>Rejected</option>
+            </select>
+
+            <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                Update
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

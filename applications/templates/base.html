@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">
+                J
+            </div>
+            <span class="text-xl font-semibold text-gray-800">
+                JobTracker
+            </span>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <div class="flex items-center gap-6">
+
+            <a href="{% url 'dashboard' %}"
+               class="text-gray-600 hover:text-indigo-600 font-medium transition">
+                Dashboard
+            </a>
+
+            <a href="{% url 'add_job' %}"
+               class="text-gray-600 hover:text-indigo-600 font-medium transition">
+                Add Job
+            </a>
+
+            <div class="flex items-center gap-2 border-l pl-4">
+                <div class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">
+                    {{ request.user.username|slice:":1"|upper }}
+                </div>
+
+                <a href="{% url 'logout' %}"
+                   class="text-red-500 hover:text-red-600 font-medium">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+</nav>
+
+
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-6 mt-4">
+        {% for message in messages %}
+            <div class="mb-2 p-3 rounded
+                {% if message.tags == 'success' %}
+                    bg-green-100 text-green-800
+                {% elif message.tags == 'error' %}
+                    bg-red-100 text-red-800
+                {% else %}
+                    bg-gray-100 text-gray-800
+                {% endif %}
+            ">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-6">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
