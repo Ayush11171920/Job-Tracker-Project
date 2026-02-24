@@ -50,4 +50,4 @@ This project demonstrates strong backend fundamentals using Django and real-worl
 
 ## 🚀 How To Run Locally
 
-1. Clone the repository:
+1. https://github.com/Ayush11171920/Job-Tracker-Project
