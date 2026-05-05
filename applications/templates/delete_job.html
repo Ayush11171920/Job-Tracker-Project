@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% block content %}
 
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
@@ -24,4 +24,12 @@
     </div>
 </div>
 
-{% endblock %}
+{% endblock %} 
+
+{% comment %} <form method="POST" action="{% url 'delete_job' job.id %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="text-red-600 hover:underline">
+        Delete
+    </button>
+</form> {% endcomment %}
+

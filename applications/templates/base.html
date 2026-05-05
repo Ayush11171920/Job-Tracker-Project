@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <title>Job Application Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+.loader {
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {},
+    }
+}
+</script>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
@@ -82,4 +98,17 @@
     </main>
 
 </body>
+<script>
+function showLoader(form) {
+    const button = form.querySelector("button");
+
+    const text = button.querySelector(".btn-text");
+    const loader = button.querySelector(".loader");
+
+    text.innerText = "Generating...";
+    loader.classList.remove("hidden");
+
+    button.disabled = true;
+}
+</script>
 </html>

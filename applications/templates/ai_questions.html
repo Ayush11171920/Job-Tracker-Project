@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Interview Questions</title>
+</head>
+<body>
+
+<h2>Generate Interview Questions</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="role" placeholder="Enter role" required>
+    <button type="submit">Generate</button>
+</form>
+
+{% if questions %}
+    <h3>Result:</h3>
+    <pre>{{ questions }}</pre>
+{% endif %}
+
+</body>
+</html>

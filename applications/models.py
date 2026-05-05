@@ -16,5 +16,8 @@ class JobApplication(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Applied')
     applied_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('user', 'company', 'position')
+
     def __str__(self):
         return self.company
