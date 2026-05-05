@@ -14,6 +14,8 @@ import requests
 from django.conf import settings
 from django.contrib import messages
 from django.db import IntegrityError
+from django.contrib.auth.models import User
+
 
 
 @login_required(login_url='login')
@@ -209,6 +211,21 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def signup(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists")
+            return redirect("signup")
+
+        User.objects.create_user(username=username, password=password)
+        messages.success(request, "Account created successfully! Please login.")
+        return redirect("login")
+
+    return render(request, "signup.html")
 
 
 class JobApplicationViewSet(ModelViewSet):

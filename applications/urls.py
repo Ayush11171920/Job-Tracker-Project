@@ -16,6 +16,7 @@ urlpatterns = [
     path('api/login/', views.login_api),
     path('api/questions/', views.generate_questions),
     path('ai-questions/', views.ai_questions_page),
+    path("signup/", views.signup, name="signup"),
     path('api/', include(router.urls))
     
     
