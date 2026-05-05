@@ -152,35 +152,19 @@ def add_job(request):
 
 @login_required(login_url='login')
 
-def edit_job(request, job_id):
-    job = get_object_or_404(JobApplication, id=job_id, user=request.user)
+def edit_job(request, pk):
+    job = get_object_or_404(JobApplication, id=pk, user=request.user)
 
     if request.method == "POST":
-        company = request.POST.get("company")
-        position = request.POST.get("position")
-        status = request.POST.get("status")
-
-        # 🔍 Check duplicate EXCLUDING current job
-        exists = JobApplication.objects.filter(
-            user=request.user,
-            company=company,
-            position=position
-        ).exclude(id=job.id).exists()
-
-        if exists:
-            messages.error(request, "This job already exists!")
-            return redirect("dashboard")
-
-        # ✅ Safe to update
-        job.company = company
-        job.position = position
-        job.status = status
+        job.company = request.POST.get("company")
+        job.position = request.POST.get("position")
+        job.status = request.POST.get("status")
         job.save()
 
-        messages.success(request, "Job updated successfully!")
         return redirect("dashboard")
 
     return render(request, "edit_job.html", {"job": job})
+
 
 @login_required(login_url='login')
 def delete_job(request, id):
