@@ -18,13 +18,12 @@
                    class="w-full p-2 border rounded mb-3"
                    placeholder="Position">
 
-            <select name="status"
-                    class="w-full p-2 border rounded mb-3">
-                <option {% if job.status == "Applied" %}selected{% endif %}>Applied</option>
-                <option {% if job.status == "Interview" %}selected{% endif %}>Interview</option>
-                <option {% if job.status == "Offer" %}selected{% endif %}>Offer</option>
-                <option {% if job.status == "Rejected" %}selected{% endif %}>Rejected</option>
-            </select>
+       <select name="status" class="w-full p-2 border rounded mb-3">
+    <option value="Applied" {% if job.status == "Applied" %}selected{% endif %}>Applied</option>
+    <option value="Interview" {% if job.status == "Interview" %}selected{% endif %}>Interview</option>
+    <option value="Offer" {% if job.status == "Offer" %}selected{% endif %}>Offer</option>
+    <option value="Rejected" {% if job.status == "Rejected" %}selected{% endif %}>Rejected</option>
+    </select>
 
             <button class="bg-blue-600 text-white px-4 py-2 rounded">
                 Update

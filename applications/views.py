@@ -302,3 +302,4 @@ def ai_questions_page(request):
         questions = result['choices'][0]['message']['content']
 
     return render(request, 'ai_questions.html', {'questions': questions})   
+
