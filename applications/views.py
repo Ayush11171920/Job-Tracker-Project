@@ -20,24 +20,24 @@ from django.contrib.auth.models import User
 
 @login_required(login_url='login')
 def dashboard(request):
-    # 👇 Get user jobs
+    
     jobs = JobApplication.objects.filter(user=request.user)
 
-    # 👇 Filter by status
+    
     status_filter = request.GET.get("status")
     if status_filter:
         jobs = jobs.filter(status=status_filter)
 
-    # 👇 Dashboard stats
+    
     total = JobApplication.objects.filter(user=request.user).count()
     applied = JobApplication.objects.filter(user=request.user, status="Applied").count()
     interview = JobApplication.objects.filter(user=request.user, status="Interview").count()
     offer = JobApplication.objects.filter(user=request.user, status="Offer").count()
     rejected = JobApplication.objects.filter(user=request.user, status="Rejected").count()
 
-    # =========================
-    # 🤖 AI PART (CLEAN)
-    # =========================
+    
+    
+    
     questions = None
     selected_job_id = None
 
@@ -76,9 +76,9 @@ def dashboard(request):
             except Exception as e:
                 questions = f"Error: {str(e)}"
 
-    # =========================
-    # 📦 Context
-    # =========================
+    
+    
+    
     context = {
         "jobs": jobs,
         "total": total,
@@ -93,32 +93,7 @@ def dashboard(request):
 
     return render(request, "dashboard.html", context)
 
-# @login_required(login_url='login')
-# def dashboard(request):
-#     jobs = JobApplication.objects.filter(user=request.user)
 
-#     status_filter = request.GET.get("status")
-
-#     if status_filter:
-#         jobs = jobs.filter(status=status_filter)
-
-#     total = JobApplication.objects.filter(user=request.user).count()
-#     applied = JobApplication.objects.filter(user=request.user, status="Applied").count()
-#     interview = JobApplication.objects.filter(user=request.user, status="Interview").count()
-#     offer = JobApplication.objects.filter(user=request.user, status="Offer").count()
-#     rejected = JobApplication.objects.filter(user=request.user, status="Rejected").count()
-
-#     context = {
-#         "jobs": jobs,
-#         "total": total,
-#         "applied": applied,
-#         "interview": interview,
-#         "offer": offer,
-#         "rejected": rejected,
-#         "current_status": status_filter
-#     }
-
-#     return render(request, "dashboard.html", context)
 
 
 

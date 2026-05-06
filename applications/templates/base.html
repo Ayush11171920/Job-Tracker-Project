@@ -14,7 +14,7 @@
 }
 </style>
 
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -26,11 +26,11 @@ tailwind.config = {
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-    <!-- Navbar -->
+    
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-        <!-- Logo -->
+        
         <div class="flex items-center gap-2">
             <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">
                 J
@@ -72,7 +72,7 @@ tailwind.config = {
 
 
 
-    <!-- Messages -->
+    
     {% if messages %}
     <div class="max-w-7xl mx-auto px-6 mt-4">
         {% for message in messages %}
@@ -91,7 +91,7 @@ tailwind.config = {
     </div>
     {% endif %}
 
-    <!-- Main Content -->
+    
     <main class="max-w-7xl mx-auto px-6 py-6">
         {% block content %}
         {% endblock %}
