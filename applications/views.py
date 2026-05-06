@@ -152,8 +152,8 @@ def add_job(request):
 
 @login_required(login_url='login')
 
-def edit_job(request, pk):
-    job = get_object_or_404(JobApplication, id=pk, user=request.user)
+def edit_job(request, id):
+    job = get_object_or_404(JobApplication, id=id, user=request.user)
 
     if request.method == "POST":
         job.company = request.POST.get("company")
